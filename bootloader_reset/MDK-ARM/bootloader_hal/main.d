@@ -22,6 +22,4 @@ bootloader_hal/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_spi.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
   ..\Core\Inc\i2c.h ..\Core\Inc\spi.h ..\Core\Inc\usart.h \
-  ..\Core\Inc\gpio.h interface\Int_w25q128.h \
-  application\App_bootloader.h interface\Int_w24c02.h \
-  interface\Int_bootloader.h
+  ..\Core\Inc\gpio.h application\App_reset.h interface\Int_bootloader.h

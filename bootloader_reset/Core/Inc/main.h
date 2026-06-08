@@ -60,8 +60,12 @@ void Error_Handler(void);
 #define KEY1_Pin GPIO_PIN_4
 #define KEY1_GPIO_Port GPIOE
 #define KEY1_EXTI_IRQn EXTI4_IRQn
+#define LED1_Pin GPIO_PIN_5
+#define LED1_GPIO_Port GPIOE
 #define W25Q128_CS_Pin GPIO_PIN_12
 #define W25Q128_CS_GPIO_Port GPIOB
+#define LED0_Pin GPIO_PIN_5
+#define LED0_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

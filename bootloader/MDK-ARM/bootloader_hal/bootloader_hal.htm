@@ -3,7 +3,7 @@
 <title>Static Call Graph - [bootloader_hal\bootloader_hal.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image bootloader_hal\bootloader_hal.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Mon Jun  8 22:32:32 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Mon Jun  8 23:18:00 2026
 <BR><P>
 <H3>Maximum Stack Usage =        240 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -365,28 +365,29 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[56]"></a>App_bootloader_check_update</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, app_bootloader.o(.text.App_bootloader_check_update))
+<P><STRONG><a name="[56]"></a>App_bootloader_check_update</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, app_bootloader.o(.text.App_bootloader_check_update))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = App_bootloader_check_update &rArr; Int_w24c02_read_bytes &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_read_bytes
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_read_bytes
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[59]"></a>App_bootloader_jump_app</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, app_bootloader.o(.text.App_bootloader_jump_app))
+<P><STRONG><a name="[5a]"></a>App_bootloader_jump_app</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, app_bootloader.o(.text.App_bootloader_jump_app))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = App_bootloader_jump_app &rArr; Int_bootloader_jump_to_app &rArr; puts &rArr; fputc &rArr; HAL_UART_Transmit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5b]"></a>App_bootloader_update</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, app_bootloader.o(.text.App_bootloader_update))
+<P><STRONG><a name="[5c]"></a>App_bootloader_update</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, app_bootloader.o(.text.App_bootloader_update))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = App_bootloader_update &rArr; puts &rArr; fputc &rArr; HAL_UART_Transmit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -436,7 +437,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspDeInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
 </UL>
 
 <P><STRONG><a name="[55]"></a>HAL_Delay</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, stm32f1xx_hal.o(.text.HAL_Delay))
@@ -444,7 +445,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
+<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_check_default
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_check_update
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -528,7 +529,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_read_bytes
+<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_read_bytes
 </UL>
 
 <P><STRONG><a name="[6a]"></a>HAL_I2C_Mem_Write</STRONG> (Thumb, 438 bytes, Stack size 48 bytes, stm32f1xx_hal_i2c.o(.text.HAL_I2C_Mem_Write))
@@ -538,7 +539,7 @@ Global Symbols
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RequestMemoryWrite
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitOnBTFFlagUntilTimeout
 </UL>
-<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
+<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
 </UL>
 
 <P><STRONG><a name="[66]"></a>HAL_I2C_MspInit</STRONG> (Thumb, 104 bytes, Stack size 32 bytes, i2c.o(.text.HAL_I2C_MspInit))
@@ -728,17 +729,17 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
-<P><STRONG><a name="[5a]"></a>Int_bootloader_jump_to_app</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, int_bootloader.o(.text.Int_bootloader_jump_to_app))
+<P><STRONG><a name="[5b]"></a>Int_bootloader_jump_to_app</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, int_bootloader.o(.text.Int_bootloader_jump_to_app))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = Int_bootloader_jump_to_app &rArr; puts &rArr; fputc &rArr; HAL_UART_Transmit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DeInit
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_jump_app
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_jump_app
 </UL>
 
-<P><STRONG><a name="[57]"></a>Int_w24c02_read_bytes</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, int_w24c02.o(.text.Int_w24c02_read_bytes))
+<P><STRONG><a name="[58]"></a>Int_w24c02_read_bytes</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, int_w24c02.o(.text.Int_w24c02_read_bytes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Int_w24c02_read_bytes &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Read
@@ -746,12 +747,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_check_update
 </UL>
 
-<P><STRONG><a name="[58]"></a>Int_w24c02_write_bytes</STRONG> (Thumb, 232 bytes, Stack size 48 bytes, int_w24c02.o(.text.Int_w24c02_write_bytes))
+<P><STRONG><a name="[59]"></a>Int_w24c02_write_bytes</STRONG> (Thumb, 232 bytes, Stack size 48 bytes, int_w24c02.o(.text.Int_w24c02_write_bytes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Int_w24c02_write_bytes &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Mem_Write
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_check_update
 </UL>
@@ -841,15 +842,15 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printf8.o(i.__0printf$8)
 </UL>
 <P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 174 bytes, Stack size 64 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = main &rArr; App_bootloader_check_update &rArr; Int_w24c02_read_bytes &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_jump_app
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_update
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_jump_app
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_update
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_check_default
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_check_update
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
@@ -873,7 +874,7 @@ Global Symbols
 <P><STRONG><a name="[8a]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf8.o(i.__0printf$8))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
 </UL>
 
 <P><STRONG><a name="[a4]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
@@ -882,14 +883,15 @@ Global Symbols
 
 <P><STRONG><a name="[a6]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[5c]"></a>puts</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, puts.o(i.puts))
+<P><STRONG><a name="[57]"></a>puts</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, puts.o(i.puts))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = puts &rArr; fputc &rArr; HAL_UART_Transmit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_update
+<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_w24c02_write_bytes
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Int_bootloader_jump_to_app
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_update
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_bootloader_check_update
 </UL>
 <P>
 <H3>

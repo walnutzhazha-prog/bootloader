@@ -8,6 +8,8 @@ uint8_t app_boot_update_status = BOOT_NO_UPDATE;
  */
 void App_bootloader_check_update(void)
 {
+    printf("bootloader start\r\n");
+    printf("bootloader check update\r\n");
     //读取3个字节的数据
     uint8_t data[3];
     Int_w24c02_read_bytes(CHECK_KEY_ADDR, data, 3);
@@ -58,6 +60,7 @@ void App_bootloader_update()
     if(app_boot_update_status == BOOT_UPDATE)
     {
         //将W25Q128中的程序写入到flash中
+        //TODO:将W25Q128中的程序写入到flash中
         printf("app update\r\n");
     }
     else if(app_boot_update_status == BOOT_NO_UPDATE)
@@ -78,5 +81,14 @@ void App_bootloader_update()
 void App_bootloader_jump_app()
 {
     //不管更新与否，最后都需要执行的跳转操作 到A程序中
+    if (app_boot_update_status == BOOT_RESET)
+    {
+        //跳转到出厂设置的默认程序  0x0800 4000
+    }
+    else
+    {
+        //不需要恢复出厂设置，直接跳转到A程序中  0x0800 8000
+    }
+    
     Int_bootloader_jump_to_app();
 }

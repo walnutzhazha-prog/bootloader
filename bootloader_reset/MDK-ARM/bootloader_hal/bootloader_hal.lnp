@@ -23,9 +23,7 @@
 "bootloader_hal\stm32f1xx_hal_uart.o"
 "bootloader_hal\system_stm32f1xx.o"
 "bootloader_hal\int_bootloader.o"
-"bootloader_hal\int_w24c02.o"
-"bootloader_hal\int_w25q128.o"
-"bootloader_hal\app_bootloader.o"
+"bootloader_hal\app_reset.o"
 --library_type=microlib --strict --scatter "bootloader_hal\bootloader_hal.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -1,5 +1,5 @@
-bootloader_hal/app_bootloader.o: application\App_bootloader.c \
-  application\App_bootloader.h interface\Int_w24c02.h ..\Core\Inc\i2c.h \
+bootloader_hal/app_reset.o: application\App_reset.c \
+  application\App_reset.h interface\Int_bootloader.h ..\Core\Inc\usart.h \
   ..\Core\Inc\main.h ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
@@ -21,5 +21,4 @@ bootloader_hal/app_bootloader.o: application\App_bootloader.c \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_spi.h \
-  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
-  ..\Core\Inc\usart.h interface\Int_bootloader.h
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h

@@ -26,8 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //#include "App_bootloader.h"
-#include "Int_w25q128.h"
-#include "App_bootloader.h"
+#include "App_reset.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,12 +53,12 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-extern uint16_t uart_rec_total_len;
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// #define REC_BUFF_LEN   32
+#define RESET_ADDR 0x4000
 /* USER CODE END 0 */
 
 /**
@@ -70,7 +69,10 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  //重定向中断向量表
+  SCB->VTOR = FLASH_BASE | RESET_ADDR;
+  //打开中断
+  __enable_irq();
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -96,47 +98,13 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   
-  __HAL_RCC_I2C1_FORCE_RESET();
-  HAL_Delay(2);
-  __HAL_RCC_I2C1_RELEASE_RESET();
-  //重新初始化一下I2C
-  MX_I2C1_Init();
+  //出厂设置的默认程序
+  App_bootloader_init();
 
 
-  //1.检查更新状态  
-  App_bootloader_check_update();
-
-  //2.判断是否进入默认程序  恢复出厂设置
-  App_bootloader_check_default();
-
-  //3.根据状态进行更新
-  App_bootloader_update();
-
-  //4.跳转到App
-  App_bootloader_jump_app();
-
-/*  调试I2C读写是否有问题的代码
-HAL_StatusTypeDef write_status, read_status;
-// 1. 写入并获取状态
-write_status = HAL_I2C_Mem_Write(&hi2c1, W24C02_ADDR, 0x00, I2C_MEMADD_SIZE_8BIT, (uint8_t *)"123456", 6, 100);
-if(write_status == HAL_OK) {
-    printf("I2C Write Success!\r\n");
-} else {
-    printf("I2C Write Failed! Error Code: %d\r\n", write_status); // 1: ERROR, 2: BUSY, 3: TIMEOUT
-}
-
-HAL_Delay(5); 
-
-// 2. 读取并获取状态
-uint8_t buff[10] = {0}; 
-read_status = HAL_I2C_Mem_Read(&hi2c1, W24C02_ADDR_R, 0x00, I2C_MEMADD_SIZE_8BIT, buff, 6, 100);
-if(read_status == HAL_OK) {
-    printf("I2C Read Success! buff: %s\r\n", buff);
-} else {
-    printf("I2C Read Failed! Error Code: %d\r\n", read_status);
-}
-*/
-
+  //点亮LED0，表示正在运行出厂默认程序
+  HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_RESET);
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -144,7 +112,7 @@ if(read_status == HAL_OK) {
   while (1)
   {
 
-    
+    App_bootloader_work();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
