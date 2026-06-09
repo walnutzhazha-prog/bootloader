@@ -226,6 +226,7 @@ uint8_t Int_bootloader_jump_to_app(void)
         return 1;
     }
 
+
     //2注销bootloader程序
     //2.1关闭中断
     __disable_irq();

@@ -54,7 +54,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define APP_START_ADDR 0x08004000
+#define APP_START_ADDR 0x08008000
 /* USER CODE END 0 */
 
 /**
@@ -69,7 +69,7 @@ int main(void)
   //重定向中断向量表
   SCB->VTOR = APP_START_ADDR;
   __enable_irq();
-   //跳转到用户程序
+  //跳转到用户程序
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -98,10 +98,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,GPIO_PIN_RESET);
-	  HAL_Delay(50);
-	  HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,GPIO_PIN_SET);
-	  HAL_Delay(50);
+    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

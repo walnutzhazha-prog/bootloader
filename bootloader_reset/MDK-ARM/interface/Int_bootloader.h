@@ -9,7 +9,7 @@
 
 //程序写入的起始位置 => A程序起始位置在 0x08008000  
 #define APP_START_ADDR    0x08008000
-#define APP_SIZE          0x7C000
+#define APP_SIZE          0x78000
 #define STACK_ADDR        0x20000000
 #define APP_END_ADDR      0x08080000
 

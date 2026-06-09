@@ -16,11 +16,11 @@
                 "RTE/_f103_led",
                 "C:/Users/as141/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include",
                 "C:/Users/as141/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/RTOS2/Include",
-                "d:/STM32_Project/f103_led/Core/Inc",
-                "d:/STM32_Project/f103_led/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy",
-                "d:/STM32_Project/f103_led/Drivers/STM32F1xx_HAL_Driver/Inc",
-                "d:/STM32_Project/f103_led/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
-                "d:/STM32_Project/f103_led/Drivers/CMSIS/Include"
+                "d:/STM32_Project/bootloader/P01_f103_led/Core/Inc",
+                "d:/STM32_Project/bootloader/P01_f103_led/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy",
+                "d:/STM32_Project/bootloader/P01_f103_led/Drivers/STM32F1xx_HAL_Driver/Inc",
+                "d:/STM32_Project/bootloader/P01_f103_led/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
+                "d:/STM32_Project/bootloader/P01_f103_led/Drivers/CMSIS/Include"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
