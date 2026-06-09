@@ -113,6 +113,36 @@ void Int_w25q128_read_data(uint8_t block, uint8_t sector, uint8_t page, uint8_t 
 }
 
 
+/**
+ * @brief 读取数据 * addr 是W25Q128的地址  0-0xFFFFFF   一次擦
+ * 
+ * @param addr 读取数据  32位地址
+ * @param data 数据缓冲区
+ * @param len 读取数据的长度
+ */
+void Int_w25q128_read_data_with_32addr(uint32_t addr, uint8_t *data, uint16_t len)
+{
+    // 1.等待忙状态
+    Int_w25q128_wait_busy(); // 等待芯片忙状态
+
+    // 2.拉低片选引脚，启动SPI设备
+    Int_w25q128_start();
+
+    // 3.发送读取数据的命令和地址
+    Int_w25q128_write_byte(W25Q128_READ_DATA); // 读取数据的命令
+
+    Int_w25q128_write_byte((addr >> 16) & 0xff); // 地址的高8位  
+    Int_w25q128_write_byte((addr >> 8) & 0xff);     
+    Int_w25q128_write_byte(addr & 0xff);            
+    for (int i = 0; i < len; i++)
+    {
+        data[i] = Int_w25q128_read_byte();
+    }
+    // 4.拉高片选引脚，停止SPI设备
+    Int_w25q128_stop();
+}
+
+
 static void Int_w25q128_write_enable(void)
 {
     // 1.等待忙状态

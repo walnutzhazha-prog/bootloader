@@ -22,4 +22,5 @@ bootloader_hal/app_bootloader.o: application\App_bootloader.c \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_spi.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
-  ..\Core\Inc\usart.h interface\Int_bootloader.h
+  ..\Core\Inc\usart.h interface\Int_w25q128.h ..\Core\Inc\spi.h \
+  interface\Int_bootloader.h
