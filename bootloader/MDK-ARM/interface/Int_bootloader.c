@@ -27,6 +27,15 @@ uint8_t Int_bootloader_jump_to_app(uint32_t app_start_addr)
         return 1;
     }
 
+    //手动注销内核NVIC的中断
+    NVIC_DisableIRQ(EXTI4_IRQn);
+    NVIC_DisableIRQ(USART1_IRQn);
+
+    //SYSTICK中断关闭
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0;
+    SysTick->VAL = 0;
+
     //2注销bootloader程序
     //2.1关闭中断
     __disable_irq();
