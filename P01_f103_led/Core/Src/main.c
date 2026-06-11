@@ -18,11 +18,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "can.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Int_can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,7 +92,21 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_CAN_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+  //测试CAN通讯
+  Int_CAN_init();
+
+  // Int_CAN_send(0, (uint8_t *)"hello", 5);
+  // Int_CAN_send(0, (uint8_t *)"hi", 2);
+
+  // HAL_Delay(1000);
+
+  CAN_Rec_MSG msgs[3] = {0};
+  uint8_t num = 0;
+  
 
   /* USER CODE END 2 */
 
@@ -98,12 +114,25 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_SET);
-    HAL_Delay(200);
-    HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_RESET);
-    HAL_Delay(200);
+    Int_CAN_receive_msg(msgs, &num);
+
+    for (uint8_t i = 0; i < num; i++)
+    {
+      printf("ID: %d, DLC: %d, Data: %s\n", msgs[i].txHeader.StdId, msgs[i].txHeader.DLC, msgs[i].data);
+    }
+    //清除接收消息的数量 => 下次重新接收
+    num = 0;
+
+
+    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    HAL_Delay(400);
+
+    // HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+    // HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_SET);
+    // HAL_Delay(200);
+    // HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+    // HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_RESET);
+    // HAL_Delay(200);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
