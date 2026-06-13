@@ -1,0 +1,22 @@
+--cpu Cortex-M3
+"app_led\startup_stm32f103xe.o"
+"app_led\main.o"
+"app_led\gpio.o"
+"app_led\stm32f1xx_it.o"
+"app_led\stm32f1xx_hal_msp.o"
+"app_led\stm32f1xx_hal_gpio_ex.o"
+"app_led\stm32f1xx_hal.o"
+"app_led\stm32f1xx_hal_rcc.o"
+"app_led\stm32f1xx_hal_rcc_ex.o"
+"app_led\stm32f1xx_hal_gpio.o"
+"app_led\stm32f1xx_hal_dma.o"
+"app_led\stm32f1xx_hal_cortex.o"
+"app_led\stm32f1xx_hal_pwr.o"
+"app_led\stm32f1xx_hal_flash.o"
+"app_led\stm32f1xx_hal_flash_ex.o"
+"app_led\stm32f1xx_hal_exti.o"
+"app_led\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "app_led\app_led.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "app_led.map" -o app_led\app_led.axf

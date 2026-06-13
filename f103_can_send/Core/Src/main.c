@@ -1,30 +1,32 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2026 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "can.h"
+#include "crc.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "Int_can.h"
+#include "App_update.h"
+#include "App_bootloader.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,34 +92,28 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN_Init();
   MX_USART1_UART_Init();
+  MX_CRC_Init();
   /* USER CODE BEGIN 2 */
-  // 测试CAN通讯
-  Int_CAN_init();
+  // extern Bootloader_status boot_status;
+  // App_bootloader_init();
+  // while(1)
+  // {
+  //   App_bootloader_work();
+  //   if(boot_status == BOOTLOADER_STATUS_JUMP_REC_DONE)
+  //   {
+  //       break;
+  //   }
+  // }
 
-  
+  App_update_init();
 
-  CAN_Rec_MSG msgs[3] = {0};
-  uint8_t num = 0;
-  
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-    Int_CAN_receive_msg(msgs, &num);
-
-    for (uint8_t i = 0; i < num; i++)
-    {
-      printf("ID: %d, DLC: %d, Data: %s\n", msgs[i].txHeader.StdId, msgs[i].txHeader.DLC, msgs[i].data);
-    }
-
-    Int_CAN_send(0, (uint8_t *)"hello", 5);
-    Int_CAN_send(0, (uint8_t *)"hi", 2);
-    printf("send ok\r\n");
-    num = 0;
-    HAL_Delay(1000);
+    App_update_work();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

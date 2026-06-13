@@ -12,11 +12,12 @@ void App_bootloader_check_update(void)
     printf("bootloader check update\r\n");
     // 读取3个字节的数据
     uint8_t data[3];
-    Int_w24c02_read_bytes(CHECK_KEY_ADDR, data, 3);
+    Int_w24c02_read_bytes(CHECK_UPDATE_ADDR, data, 3);
     // 1.校验密钥是否正确      高8位在前
     uint16_t key = data[1] << 8 | data[2];
     if (key != CHECK_KEY)
     {
+        printf("check key error\r\n");
         // 2.密钥不正确，不进行更新  重置密钥
         data[0] = BOOT_NO_UPDATE;
         data[1] = (uint8_t)CHECK_KEY >> 8;
@@ -186,8 +187,9 @@ void App_bootloader_update()
 {
     if (app_boot_update_status == BOOT_UPDATE)
     {
+        //擦除更新标志位
+        Int_w24c02_write_byte(CHECK_UPDATE_ADDR,BOOT_NO_UPDATE);
         // 将W25Q128中的程序写入到flash中
-        // TODO:将W25Q128中的程序写入到flash中
         printf("app update\r\n");
         app_bootloader_write_app_flash();
     }

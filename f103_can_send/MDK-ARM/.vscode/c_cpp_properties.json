@@ -14,7 +14,8 @@
                 "d:/STM32_Project/bootloader/f103_can_send/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy",
                 "d:/STM32_Project/bootloader/f103_can_send/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
                 "d:/STM32_Project/bootloader/f103_can_send/Drivers/CMSIS/Include",
-                "interface"
+                "interface",
+                "application"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

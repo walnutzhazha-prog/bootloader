@@ -38,12 +38,14 @@ void Int_CAN_init(void)
  * @param id 消息ID
  * @param len 数据长度
  * @param data 数据指针
+ * 
+ * 同一种类型的消息 如果需要保证有序性  只能使用同一个邮箱
  *
  */
 void Int_CAN_send(uint16_t id, uint8_t *data, uint8_t len)
 {
     // 等待发送邮箱空闲
-    while (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0)
+    while (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) < 3)
         ;
 
     // 将发送的消息添加到发送邮箱

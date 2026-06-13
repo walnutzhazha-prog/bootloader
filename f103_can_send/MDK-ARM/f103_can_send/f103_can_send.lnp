@@ -3,6 +3,7 @@
 "f103_can_send\main.o"
 "f103_can_send\gpio.o"
 "f103_can_send\can.o"
+"f103_can_send\crc.o"
 "f103_can_send\usart.o"
 "f103_can_send\stm32f1xx_it.o"
 "f103_can_send\stm32f1xx_hal_msp.o"
@@ -18,9 +19,13 @@
 "f103_can_send\stm32f1xx_hal_flash.o"
 "f103_can_send\stm32f1xx_hal_flash_ex.o"
 "f103_can_send\stm32f1xx_hal_exti.o"
+"f103_can_send\stm32f1xx_hal_crc.o"
 "f103_can_send\stm32f1xx_hal_uart.o"
 "f103_can_send\system_stm32f1xx.o"
 "f103_can_send\int_can.o"
+"f103_can_send\int_bootloader.o"
+"f103_can_send\app_update.o"
+"f103_can_send\app_bootloader.o"
 --library_type=microlib --strict --scatter "f103_can_send\f103_can_send.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
